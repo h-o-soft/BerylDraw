@@ -1,0 +1,91 @@
+.menubar {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  background: #2d2d2d;
+  border-bottom: 1px solid #3e3e3e;
+  font-size: 13px;
+  user-select: none;
+  gap: 8px;
+}
+
+.menubar-title {
+  font-weight: 600;
+  margin-right: 16px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.menubar-items {
+  display: flex;
+  gap: 0;
+}
+
+.menu-container {
+  position: relative;
+}
+
+.menu-trigger {
+  padding: 4px 10px;
+  background: none;
+  border: none;
+  color: #ccc;
+  font-size: 12px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.menu-trigger:hover,
+.menu-trigger.active {
+  background: #3e3e3e;
+}
+
+.menu-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 200px;
+  background: #2d2d2d;
+  border: 1px solid #555;
+  border-radius: 4px;
+  padding: 4px 0;
+  z-index: 1000;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 6px 12px;
+  background: none;
+  border: none;
+  color: #ccc;
+  font-size: 12px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.menu-item:hover {
+  background: #0078d4;
+  color: #fff;
+}
+
+.menu-shortcut {
+  color: #888;
+  font-size: 11px;
+  margin-left: 24px;
+}
+
+.menu-item:hover .menu-shortcut {
+  color: #ddd;
+}
+
+.menu-separator {
+  height: 1px;
+  background: #444;
+  margin: 4px 8px;
+}
