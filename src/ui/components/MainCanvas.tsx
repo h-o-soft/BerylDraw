@@ -123,7 +123,7 @@ export function MainCanvas() {
       renderer.renderSelection(selection, document.grid);
     }
     renderer.renderCursor(cursorPos, document.grid);
-  }, [document.grid, zoom, showGrid, cursorPos, selection, previewCells, palette]);
+  }, [fontLoaded, document.grid, zoom, showGrid, cursorPos, selection, previewCells, palette]);
 
   // テキストツール用: hidden textarea にフォーカス
   useEffect(() => {
