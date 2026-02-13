@@ -3,6 +3,7 @@ import "./ToolBar.css";
 
 const TOOLS = [
   { name: "pen", icon: "P", label: "Pen" },
+  { name: "colorpen", icon: "C", label: "Color Pen" },
   { name: "text", icon: "T", label: "Text" },
   { name: "rectangle", icon: "R", label: "Rectangle" },
   { name: "ellipse", icon: "O", label: "Ellipse" },

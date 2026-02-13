@@ -4,6 +4,7 @@ import { MisakiSpriteSheet } from "../../rendering/sprite-sheet";
 import { ColoredSpriteCache } from "../../rendering/colored-sprite-cache";
 import { CanvasRenderer } from "../../rendering/canvas-renderer";
 import { PenTool } from "../../application/tools/pen-tool";
+import { ColorPenTool } from "../../application/tools/color-pen-tool";
 import { TextTool } from "../../application/tools/text-tool";
 import { RectangleTool } from "../../application/tools/rectangle-tool";
 import { EllipseTool } from "../../application/tools/ellipse-tool";
@@ -18,6 +19,7 @@ import misakiGothicPng from "../../assets/fonts/misaki_gothic.png";
 // ツールレジストリ
 const tools: Record<string, Tool> = {
   pen: new PenTool(),
+  colorpen: new ColorPenTool(),
   text: new TextTool(),
   rectangle: new RectangleTool(),
   ellipse: new EllipseTool(),
