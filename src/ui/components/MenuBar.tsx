@@ -41,6 +41,13 @@ export function MenuBar() {
     return () => document.removeEventListener("mousedown", handler);
   }, [openMenu]);
 
+  // Ctrl+N ショートカットからのカスタムイベントを受信
+  useEffect(() => {
+    const handler = () => handleNew();
+    window.addEventListener("beryldraw:new-document", handler);
+    return () => window.removeEventListener("beryldraw:new-document", handler);
+  });
+
   const handleNew = useCallback(() => {
     setOpenMenu(null);
     setDialog({
@@ -139,11 +146,13 @@ export function MenuBar() {
     setOpenMenu(null);
   }, []);
 
+  const mod = navigator.platform.includes("Mac") ? "Cmd" : "Ctrl";
+
   const menus: Record<string, MenuItem[]> = {
     File: [
-      { label: "New", shortcut: "Ctrl+N", action: handleNew },
-      { label: "Open...", shortcut: "Ctrl+O", action: handleOpen },
-      { label: "Save", shortcut: "Ctrl+S", action: handleSave },
+      { label: "New", shortcut: `${mod}+N`, action: handleNew },
+      { label: "Open...", shortcut: `${mod}+O`, action: handleOpen },
+      { label: "Save", shortcut: `${mod}+S`, action: handleSave },
       { label: "Save As...", action: handleSaveAs },
       {
         label: "Export ANS...",
@@ -152,8 +161,8 @@ export function MenuBar() {
       },
     ],
     Edit: [
-      { label: "Undo", shortcut: "Ctrl+Z", action: handleUndo },
-      { label: "Redo", shortcut: "Ctrl+Shift+Z", action: handleRedo },
+      { label: "Undo", shortcut: `${mod}+Z`, action: handleUndo },
+      { label: "Redo", shortcut: `${mod}+Shift+Z`, action: handleRedo },
       { label: "Resize Canvas...", action: handleResize, separator: true },
     ],
   };

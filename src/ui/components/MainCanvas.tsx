@@ -14,6 +14,10 @@ import { SelectTool } from "../../application/tools/select-tool";
 import { EraserTool } from "../../application/tools/eraser-tool";
 import { PaintCellsCommand } from "../../application/commands/paint-cells-command";
 import type { Tool, ToolContext, ToolEvent } from "../../application/tools/tool";
+import {
+  saveDocument,
+  openDocument,
+} from "../../infrastructure/tauri-file-io";
 import misakiGothicPng from "../../assets/fonts/misaki_gothic.png";
 
 // ツールレジストリ
@@ -320,6 +324,29 @@ export function MainCanvas() {
         target instanceof HTMLTextAreaElement &&
         target === hiddenInputRef.current;
 
+      // Ctrl+S: Save
+      if ((e.ctrlKey || e.metaKey) && e.key === "s") {
+        e.preventDefault();
+        saveDocument(state.document).then((filePath) => {
+          if (filePath) state.markSaved(filePath);
+        }).catch((err) => console.error("Failed to save:", err));
+        return;
+      }
+      // Ctrl+O: Open
+      if ((e.ctrlKey || e.metaKey) && e.key === "o") {
+        e.preventDefault();
+        openDocument().then((result) => {
+          if (result) state.loadDocument(result.doc);
+        }).catch((err) => console.error("Failed to open:", err));
+        return;
+      }
+      // Ctrl+N: New
+      if ((e.ctrlKey || e.metaKey) && e.key === "n") {
+        e.preventDefault();
+        // MenuBarのダイアログを開くため、カスタムイベントを発行
+        window.dispatchEvent(new CustomEvent("beryldraw:new-document"));
+        return;
+      }
       // Ctrl+Z: Undo
       if ((e.ctrlKey || e.metaKey) && e.key === "z" && !e.shiftKey) {
         e.preventDefault();
